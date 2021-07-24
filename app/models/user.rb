@@ -7,5 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  validates :name, presence: true
+
   enum gender: { man: 0, woman: 1 }
 end
