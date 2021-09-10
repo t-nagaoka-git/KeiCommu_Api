@@ -8,6 +8,10 @@ Rails.application.routes.draw do
       namespace :auth do
         resources :sessions, only: %i[index]
       end
+
+      resources :users, defaults: {format: 'json'} do
+        resources :microposts, defaults: {format: 'json'}, only: [:index, :create, :destroy]
+      end
     end
   end
 end
