@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_21_042659) do
+ActiveRecord::Schema.define(version: 2021_09_21_072853) do
 
   create_table "microposts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.text "content"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2021_09_21_042659) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "team_messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "user_id", null: false
+    t.string "content", null: false, comment: "メッセージ内容"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_team_messages_on_team_id"
+    t.index ["user_id"], name: "index_team_messages_on_user_id"
   end
 
   create_table "team_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
@@ -68,6 +78,8 @@ ActiveRecord::Schema.define(version: 2021_09_21_042659) do
   end
 
   add_foreign_key "microposts", "users"
+  add_foreign_key "team_messages", "teams"
+  add_foreign_key "team_messages", "users"
   add_foreign_key "team_users", "teams"
   add_foreign_key "team_users", "users"
 end
