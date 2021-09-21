@@ -12,4 +12,6 @@ class User < ActiveRecord::Base
   validates :name, presence: true
 
   enum gender: { man: 0, woman: 1 }
+
+  scope :name_like, -> (name) { where("users.name like ?", "%#{sanitize_sql_like(name)}%") }
 end
