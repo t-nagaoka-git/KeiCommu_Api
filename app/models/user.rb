@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :microposts, dependent: :destroy
   has_many :team_users, dependent: :destroy
   has_many :team_messages, dependent: :destroy
+  has_many :teams, through: :team_users
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
