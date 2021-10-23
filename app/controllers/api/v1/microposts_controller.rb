@@ -1,6 +1,12 @@
 class Api::V1::MicropostsController < ApplicationController
+  before_action :authenticate_api_v1_user!
+
+  def index
+    @microposts = current_api_v1_user.microposts
+  end
+
   def create
-    @micropost = User.find(params[:user_id]).microposts.build(micropost_params)
+    @micropost = current_api_v1_user.microposts.build(micropost_params)
     @micropost.save!
   end
 
