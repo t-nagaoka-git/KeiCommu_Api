@@ -9,8 +9,18 @@ Rails.application.routes.draw do
         resources :sessions, only: %i[index]
       end
 
-      resources :users, defaults: {format: 'json'} do
-        resources :microposts, defaults: {format: 'json'}, only: [:index, :create, :destroy]
+      resources :users, defaults: {format: 'json'}, only: [:show] do
+        collection do
+          get :search 
+        end
+      end
+
+      resources :microposts, defaults: {format: 'json'}, only: [:index, :create, :destroy]
+
+      resources :teams, defaults: {format: 'json'}, only: [:create] do
+        collection do
+          get :list
+        end
       end
     end
   end
