@@ -16,5 +16,5 @@ class User < ActiveRecord::Base
 
   enum gender: { man: 0, woman: 1 }
 
-  scope :name_like, -> (name) { where("users.name like ?", "%#{sanitize_sql_like(name)}%") }
+  scope :name_like, -> (keyword) { where("users.name like ?", "%#{sanitize_sql_like(keyword)}%") }
 end

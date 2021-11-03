@@ -6,6 +6,12 @@ class Api::V1::TeamsController < ApplicationController
     @total = @teams.count
   end
 
+  def search
+    keyword = params[:keyword]
+    @teams = Team.merge(Team.name_like(keyword).or(Team.description_like(keyword)))
+    @total = @teams.count
+  end
+
   def create
     @team = current_api_v1_user.teams.build(team_params)
     current_api_v1_user.save!

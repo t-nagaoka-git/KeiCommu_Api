@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
       resources :users, defaults: {format: 'json'}, only: [:show] do
         collection do
-          get :search 
+          get :search
         end
       end
 
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resources :teams, defaults: {format: 'json'}, only: [:create] do
         collection do
           get :list
+          get :search
         end
       end
     end
