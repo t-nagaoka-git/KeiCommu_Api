@@ -25,4 +25,16 @@ class User < ActiveRecord::Base
   enum gender: { man: 0, woman: 1 }
 
   scope :name_like, -> (keyword) { where("users.name like ?", "%#{sanitize_sql_like(keyword)}%") }
+
+  def follow(other_user)
+    following << other_user
+  end
+
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
 end
