@@ -13,6 +13,10 @@ Rails.application.routes.draw do
         collection do
           get :search
         end
+        member do
+          get :following
+          get :followers
+        end
       end
 
       resources :microposts, defaults: {format: 'json'}, only: [:index, :create, :destroy]
