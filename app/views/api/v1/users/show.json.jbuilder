@@ -1,4 +1,8 @@
 json.result @result
 json.status @status
 json.message @message
-json.user @user
+json.user do
+  json.extract! @user, :id, :name, :image, :email, :gender, :description
+  json.friends_count @friends_count
+  json.followers_count @followers_count
+end
