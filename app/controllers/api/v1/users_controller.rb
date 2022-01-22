@@ -1,6 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @following = current_api_v1_user.following?(@user)
     @friends_count = @user.following.count
     @followers_count = @user.followers.count
   end
