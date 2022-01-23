@@ -21,6 +21,13 @@ Rails.application.routes.draw do
 
       resources :microposts, defaults: {format: 'json'}, only: [:index, :create, :destroy]
 
+      resources :relationships, defaults: {format: 'json'}, only: [:create, :destroy] do
+        collection do
+          post 'create', action: :create
+          post 'destroy', action: :destroy
+        end
+      end
+
       resources :teams, defaults: {format: 'json'}, only: [:create] do
         collection do
           get :list
