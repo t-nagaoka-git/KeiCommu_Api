@@ -20,6 +20,7 @@ gem 'devise_token_auth'
 
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
