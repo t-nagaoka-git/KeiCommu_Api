@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  mount_uploader :image, ImageUploader
+
   validates :name, presence: true
 
   enum gender: { man: 0, woman: 1 }
