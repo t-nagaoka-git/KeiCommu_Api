@@ -5,6 +5,10 @@ class Api::V1::MicropostsController < ApplicationController
     @microposts = current_api_v1_user.microposts
   end
 
+  def timeline
+    @microposts = current_api_v1_user.feed
+  end
+
   def create
     @micropost = current_api_v1_user.microposts.build(micropost_params)
     @micropost.save!

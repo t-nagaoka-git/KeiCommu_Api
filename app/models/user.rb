@@ -28,6 +28,14 @@ class User < ActiveRecord::Base
 
   scope :name_like, -> (keyword) { where("users.name like ?", "%#{sanitize_sql_like(keyword)}%") }
 
+  def feed
+    part_of_feed = "relationships.follower_id = :id or microposts.user_id = :id"
+    Micropost
+      .eager_load(user: :followers)
+      .where(part_of_feed, { id: id })
+      .distinct
+  end
+
   def follow(other_user)
     following << other_user
   end

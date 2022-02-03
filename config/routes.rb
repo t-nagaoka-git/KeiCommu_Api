@@ -19,7 +19,11 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :microposts, defaults: {format: 'json'}, only: [:index, :create, :destroy]
+      resources :microposts, defaults: {format: 'json'}, only: [:index, :create, :destroy] do
+        collection do
+          get :timeline
+        end
+      end
 
       resources :relationships, defaults: {format: 'json'}, only: [:create, :destroy] do
         collection do
