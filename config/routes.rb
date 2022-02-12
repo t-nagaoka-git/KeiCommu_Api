@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         collection do
           get :search
         end
+
         member do
           get :following
           get :followers
@@ -36,6 +37,9 @@ Rails.application.routes.draw do
         collection do
           get :list
           get :search
+        end
+
+        resources :team_messages, defaults: {format: 'json'}, only: [:index] do
         end
       end
     end
