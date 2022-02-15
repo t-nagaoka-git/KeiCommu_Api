@@ -39,7 +39,7 @@ Rails.application.routes.draw do
           get :search
         end
 
-        resources :team_messages, defaults: {format: 'json'}, only: [:index] do
+        resources :team_messages, defaults: {format: 'json'}, only: [:index, :create] do
         end
       end
     end

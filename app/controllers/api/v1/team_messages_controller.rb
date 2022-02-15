@@ -7,6 +7,13 @@ class Api::V1::TeamMessagesController < ApplicationController
       .find(params[:team_id])
       .team_messages
     @total = @team_messages.count
-    render action: :index
+  end
+
+  def create
+    @team = Team.find(params[:team_id])
+    @team_message = @team
+      .team_messages
+      .build(user_id: current_api_v1_user.id, content: params[:content])
+    @team_message.save!
   end
 end
