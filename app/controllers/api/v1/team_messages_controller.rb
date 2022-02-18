@@ -15,5 +15,18 @@ class Api::V1::TeamMessagesController < ApplicationController
       .team_messages
       .build(user_id: current_api_v1_user.id, content: params[:content])
     @team_message.save!
+    TeamRoomsChannel.broadcast_to(
+      @team,
+      {
+        id: @team_message.id,
+        content: @team_message.content,
+        created_at: @team_message.created_at,
+        user: {
+          id: @team_message.user.id,
+          name: @team_message.user.name,
+          image: @team_message.user.image
+        }
+      }
+    )
   end
 end
