@@ -17,6 +17,12 @@ class Api::V1::TeamsController < ApplicationController
     current_api_v1_user.save!
   end
 
+  def join
+    @team = Team.find(params[:id])
+    @team_user = @team.team_users.build(user_id: current_api_v1_user.id)
+    @team_user.save!
+  end
+
   private
 
     def team_params
