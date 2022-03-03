@@ -5,6 +5,7 @@ json.total @total
 json.microposts @microposts do |micropost|
   json.id micropost.id
   json.content micropost.content
+  json.image micropost.image
   json.created_at micropost.created_at
   json.updated_at micropost.updated_at
   json.user do
