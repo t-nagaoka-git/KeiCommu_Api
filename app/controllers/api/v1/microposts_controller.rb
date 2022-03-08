@@ -20,6 +20,15 @@ class Api::V1::MicropostsController < ApplicationController
     @micropost.save!
   end
 
+  def like
+    like = current_api_v1_user.likes.build(micropost_id: params[:id])
+    like.save!
+  end
+
+  def unlike
+    current_api_v1_user.likes.find_by(micropost_id: params[:id]).destroy
+  end
+
   private
 
     def micropost_params

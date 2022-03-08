@@ -26,6 +26,11 @@ Rails.application.routes.draw do
         collection do
           get :timeline
         end
+
+        member do
+          post :like
+          post :unlike
+        end
       end
 
       resources :relationships, defaults: {format: 'json'}, only: [:create, :destroy] do
