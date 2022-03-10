@@ -14,4 +14,9 @@ json.teams @teams do |team|
   json.users do
     json.array! team.users, :id, :name, :image
   end
+  json.recent_team_messages team.team_messages.order(id: :desc).limit(3) do |team_message|
+    json.id team_message.id
+    json.user_name team_message.user.name
+    json.content team_message.content
+  end
 end
