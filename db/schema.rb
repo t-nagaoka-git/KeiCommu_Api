@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_03_010155) do
+ActiveRecord::Schema.define(version: 2022_03_16_041216) do
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2022_03_03_010155) do
     t.string "content", null: false, comment: "メッセージ内容"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["team_id"], name: "index_team_messages_on_team_id"
     t.index ["user_id"], name: "index_team_messages_on_user_id"
   end
