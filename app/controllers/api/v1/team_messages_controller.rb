@@ -13,13 +13,14 @@ class Api::V1::TeamMessagesController < ApplicationController
     @team = Team.find(params[:team_id])
     @team_message = @team
       .team_messages
-      .build(user_id: current_api_v1_user.id, content: params[:content])
+      .build(user_id: current_api_v1_user.id, content: params[:content], image: params[:image])
     @team_message.save!
     TeamRoomsChannel.broadcast_to(
       @team,
       {
         id: @team_message.id,
         content: @team_message.content,
+        image: @team_message.image,
         created_at: @team_message.created_at,
         user: {
           id: @team_message.user.id,
