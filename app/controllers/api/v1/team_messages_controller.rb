@@ -11,9 +11,15 @@ class Api::V1::TeamMessagesController < ApplicationController
 
   def create
     @team = Team.find(params[:team_id])
-    @team_message = @team
+    if params[:content].present?
+      @team_message = @team
       .team_messages
-      .build(user_id: current_api_v1_user.id, content: params[:content], image: params[:image])
+      .build(user_id: current_api_v1_user.id, content: params[:content])
+    else
+      @team_message = @team
+      .team_messages
+      .build(user_id: current_api_v1_user.id, image: params[:image])
+    end
     @team_message.save!
     TeamRoomsChannel.broadcast_to(
       @team,
