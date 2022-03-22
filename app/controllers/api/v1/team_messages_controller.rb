@@ -6,6 +6,7 @@ class Api::V1::TeamMessagesController < ApplicationController
       .eager_load(team_messages: :user)
       .find(params[:team_id])
       .team_messages
+      .order('team_messages.created_at asc')
     @total = @team_messages.count
   end
 
