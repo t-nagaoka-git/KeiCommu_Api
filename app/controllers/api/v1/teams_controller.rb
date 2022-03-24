@@ -1,6 +1,10 @@
 class Api::V1::TeamsController < ApplicationController
   before_action :authenticate_api_v1_user!
 
+  def show
+    @team = Team.find(params[:id])
+  end
+
   def list
     @teams = current_api_v1_user.teams
     @total = @teams.count
