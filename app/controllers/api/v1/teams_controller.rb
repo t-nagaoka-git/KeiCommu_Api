@@ -27,6 +27,11 @@ class Api::V1::TeamsController < ApplicationController
     @team_user.save!
   end
 
+  def leave
+    @team_user = TeamUser.find_by(team_id: params[:id], user_id: current_api_v1_user.id)
+    @team_user.destroy
+  end
+
   private
 
     def team_params
