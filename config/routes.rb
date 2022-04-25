@@ -40,7 +40,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :teams, defaults: {format: 'json'}, only: [:create, :show] do
+      resources :teams, defaults: {format: 'json'}, only: [:create, :show, :update] do
         collection do
           get :list
           get :search
